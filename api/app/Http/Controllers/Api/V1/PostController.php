@@ -32,7 +32,7 @@ class PostController extends Controller
         return new PostResource($post);
     }
 
-    /**
+    /**https://github.com/abraham0402/APi.git
      * Update the specified resource in storage.
      */
     public function update(Request $request, Post $post)
