@@ -1,19 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Http\Resources\V1\PostResource;
-class PostController extends Controller
+
+use App\Http\Resources\V2\PostResource;
+use App\Http\Resources\V2\PostCollection;
+
+class Postcontroller2 extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return PostResource::collection(Post::latest()->paginate());
+       // return dd('hola');
+        return new PostCollection(Post::latest()->paginate());
     }
 
     /**
@@ -23,17 +27,16 @@ class PostController extends Controller
     {
         //
     }
-///contraseña hostinger F[6v>Q?n+/*F
+
     /**
      * Display the specified resource.
      */
     public function show(Post $post)
     {
-       // dd('Hola');
         return new PostResource($post);
     }
 
-    /**https://github.com/abraham0402/APi.git
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Post $post)
@@ -46,12 +49,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-       
-        $post->delete();
-
-        return response()->json([
-            'message'=>'Success'
-        ]);
-     
+        //
     }
 }
